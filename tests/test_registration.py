@@ -13,7 +13,7 @@ def setup_database():
     os.remove('users.db')
 
 def test_create_db(setup_database):
-    """Тест на успешное создание базы данных и таблицы пользователей."""
+    """Тест создания базы данных и таблицы пользователей."""
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
     # Проверяем, существует ли таблица users
@@ -22,7 +22,7 @@ def test_create_db(setup_database):
     assert table_exists, "Таблица 'users' должна существовать в базе данных."
 
 def test_add_new_user(setup_database):
-    """Тест на успешное добавление нового пользователя."""
+    """Тест добавления нового пользователя."""
     add_user('testuser', 'testuser@example.com', 'password123')
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
@@ -36,5 +36,5 @@ def test_add_new_user(setup_database):
 Тест успешной аутентификации пользователя.
 Тест аутентификации несуществующего пользователя.
 Тест аутентификации пользователя с неправильным паролем.
-Тест на корректное отображение списка пользователей.
+Тест отображения списка пользователей.
 """
