@@ -6,10 +6,8 @@ from registration.registration import create_db, add_user, authenticate_user, di
 @pytest.fixture(scope="module")
 def setup_database():
     """Фикстура для настройки базы данных перед тестами и её очистки после."""
-    # Функция create_db() создает базу данных users.db и инициализирует схему
     create_db()
     yield
-    # Очистка после выполнения тестов
     try:
         os.remove('users.db')
     except PermissionError:
@@ -26,7 +24,6 @@ def connection():
 def test_create_db(setup_database, connection):
     """Тест создания базы данных и таблицы пользователей."""
     cursor = connection.cursor()
-    # Проверяем, существует ли таблица users
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users';")
     table_exists = cursor.fetchone()
     assert table_exists, "Таблица 'users' должна существовать в базе данных."
