@@ -46,7 +46,25 @@ def test_add():
 
     result = add_user(username, email, password)
     assert result == False
+
+def test_add_user():
+    "Тест аутентификации несуществующего пользователя."
+    username = "hahahaha025545"
+    email = "emailgjfhjf"
+    password = "222555"
+    result = authenticate_user(username, email, password)
+    assert result == True
+
+    result = authenticate_user(username, email, password)
+
+    assert result == False
+
+def add(username, email, password):
+    "Тест отображения списка пользователей."
+    result = display_users(username, email, password)
+    assert result == (username, email, password)
 # Возможные варианты тестов:
+
 """
 
 Тест успешной аутентификации пользователя.
